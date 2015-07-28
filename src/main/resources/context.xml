@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    
+   <!--  <bean id="scan" class="com.hernan.rizzuti.view.Scan" /> -->
+	<bean id="values" class="com.hernan.rizzuti.model.Values" />
+	<bean id="validator" class="com.hernan.rizzuti.model.validator.Validator" />
+	
+	<bean id="guiHandler" class="com.hernan.rizzuti.view.GUIHandler">
+		<!-- <property name="scanner" ref="scan" /> -->
+		<property name="validator" ref="validator" />
+		<property name="val" ref="values" />
+	</bean>
+	
+	<bean id="stringHandler" class="com.hernan.rizzuti.model.StringHandler">
+		<constructor-arg>
+			<list></list>
+		</constructor-arg>
+		
+		<constructor-arg>
+			<list></list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="controller" class="com.hernan.rizzuti.controller.Controller" >
+		<constructor-arg ref="stringHandler"/>
+		<constructor-arg ref="guiHandler"/>
+	</bean>
+</beans>
